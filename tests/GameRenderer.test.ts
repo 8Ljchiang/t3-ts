@@ -2,7 +2,7 @@ import Game from '../src/classes/Game';
 import GameRenderer from '../src/classes/GameRenderer';
 import { GAME_WELCOME, GAME_STARTED, GAME_FINALE } from '../src/lib/constants';
 
-const game = new Game();
+const game = new Game({});
 const gameRenderer = new GameRenderer();
 
 describe("GameRenderer", () => {

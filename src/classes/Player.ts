@@ -1,8 +1,8 @@
 import IPlayer from '../interfaces/class/IPlayer';
 
 export default class Player implements IPlayer {
-    public name
-    public mark
+    public name: string
+    public mark: string
     
     constructor(args: { name: string, mark: string }) {
         this.name = args.name;

@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "devDependencies": {
+    "@types/jest": "^23.3.7",
     "ts-node": "^7.0.1",
     "typescript": "^3.1.3"
   },

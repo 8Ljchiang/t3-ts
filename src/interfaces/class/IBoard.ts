@@ -1,4 +1,4 @@
-export default interface IPlayer {
+export interface IBoard {
     height: number;
     width: number;
     data: Array<string>;

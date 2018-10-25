@@ -11,7 +11,7 @@ export default class View implements IView {
     public gameRenderer: IGameRenderer;
     public boardRenderer: IBoardRenderer;
 
-    constructor(args: { gameRenderer: IGameRenderer, boardRenderer: IBoardRenderer }) {
+    constructor(args: { gameRenderer?: IGameRenderer, boardRenderer?: IBoardRenderer }) {
         this.gameRenderer = args.gameRenderer || new GameRenderer();
         this.boardRenderer = args.boardRenderer || new BoardRenderer();
     }

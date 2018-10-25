@@ -16,6 +16,6 @@ describe('Player Class', () => {
             mark: "X"
         }
         const player = new Player(playerArgs);
-        expect(player.getMark).toEqual("X");
+        expect(player.getMark()).toEqual("X");
     });
 });

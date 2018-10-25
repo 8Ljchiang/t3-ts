@@ -6,10 +6,34 @@
   "author": "Jonathan C <jchiang@8thlight.com>",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node ./main.ts"
+    "start": "ts-node ./main.ts",
+    "test": "jest"
   },
   "devDependencies": {
     "ts-node": "^7.0.1",
     "typescript": "^3.1.3"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.json"
+      }
+    },
+    "testMatch": [
+      "**/tests/*.+(ts|tsx|js)"
+    ]
+  },
+  "dependencies": {
+    "jest": "^23.6.0",
+    "supertest": "^3.3.0",
+    "ts-jest": "^23.10.4"
   }
 }

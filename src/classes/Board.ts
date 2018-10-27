@@ -1,4 +1,4 @@
-import IBoard from '../interfaces/class/IBoard';
+import { IBoard } from '../interfaces/class/IBoard';
 import { DEFAULT_BOARD_SIZE, OPEN_POSITION, POSITION_OFFSET } from '../lib/constants';
 
 export default class Board implements IBoard {

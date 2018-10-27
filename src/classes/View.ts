@@ -1,3 +1,5 @@
+import readline from 'readline';
+
 import { IView } from "../interfaces/class/IView";
 import { IGameRenderer } from "../interfaces/class/IGameRenderer";
 import { IBoardRenderer } from "../interfaces/class/IBoardRenderer";
@@ -22,13 +24,15 @@ export default class View implements IView {
     renderGame(game: IGame): void {
         switch(game.state) {
             case GAME_STATE_NEW:
-                this.show(this.gameRenderer.render(game));
+                this.show(this.gameRenderer.welcome(game));
                 break;
             case GAME_STATE_STARTED:
+                this.show("Game: Tic Tac Toe\n");
                 this.renderBoard(game.board);
                 this.show(this.gameRenderer.render(game));
                 break;
             case GAME_STATE_END:
+                this.show("End: Tic Tac Toe\n");
                 this.renderBoard(game.board);
                 this.show(this.gameRenderer.finale(game));
                 break;
@@ -41,5 +45,13 @@ export default class View implements IView {
     }
     renderBoard(board: IBoard): void {
         this.show(this.boardRenderer.render(board));
+    }
+    clear(): void {
+        readline.cursorTo(process.stdout, 0, 0);
+        readline.clearScreenDown(process.stdout);
+    }
+    setPrompt(text: string, inputHandler: any): void {
+        inputHandler.setPrompt(text);
+        inputHandler.prompt();
     }
 }

@@ -6,7 +6,7 @@ export default class ParsingTable implements IParsingTable {
     public handlers: ITable;
     // public subParsers: any;
 
-    constructor(args: { handlers: any }) {
+    constructor(args: { handlers: ITable }) {
         // this.options = args.options;
         // this.subParsers = args.subParsers;
         this.handlers = args.handlers;
@@ -14,7 +14,7 @@ export default class ParsingTable implements IParsingTable {
     
     handle(args: { input: any; context: any; view: any; }): void {
         const { input } = args;
-        if (this._isValidOption(input)) {
+        if (this._isValidOption(args)) {
             if (this._containsHandler(input)) {
                 this.handlers[input](args);
             } else if (this.handlers['default'] !== null) {
@@ -25,7 +25,7 @@ export default class ParsingTable implements IParsingTable {
         }
     }
     handleError(args: { input: any; context: any; view: any; }): void {
-        console.log("Error: " + args.input + " not recognized.");
+        console.log("Warning: '" + args.input + "' has no path (OutOfBounds).");
         if (this.handlers['error'] !== null) {
             this.handlers['error'](args);
         }
@@ -45,8 +45,9 @@ export default class ParsingTable implements IParsingTable {
     // removeSubParser(name: string): void {
     //     delete this.subParsers[name];
     // }
-    _isValidOption(input: string): boolean {
-        return this.handlers['options']().includes(input);
+    _isValidOption(args: any): boolean {
+        const options = this.handlers['options'](args);
+        return options.includes(args.input);
     }
     _containsHandler(key: string): boolean {
         const validHandlers = Object.keys(this.handlers).filter((key) => {

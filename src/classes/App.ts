@@ -4,7 +4,7 @@ import { IView } from "../interfaces/class/IView";
 import Game from "./Game";
 import Player from "./Player";
 import View from "./View";
-import { GAME_STATE_CLOSED } from "../lib/constants";
+// import { GAME_STATE_CLOSED } from "../lib/constants";
 
 export default class App implements IApp {
     public game: IGame;
@@ -12,23 +12,29 @@ export default class App implements IApp {
     public parser: any;
     public inputHandler: any;
 
-    constructor(args: { game?: IGame, view?: IView, inputHandler?: any, parser?: any }) {
+    constructor(args: { game: IGame, view?: IView, inputHandler: any, parser?: any }) {
         this.game = args.game || this.newGame();
         this.view = args.view || new View({});
         this.parser = args.parser || {};
         this.inputHandler = args.inputHandler;
+
+        this.init();
     }
 
     init() {
         this.inputHandler.on('line', (line: any) => {
+            this.view.clear();
             if (line && this.parser !== null) {
                 const args = {
+                    key: this.game.state,
                     input: line,
                     context: this.game,
                     view: this.view
                 }
                 this.parser.parse(args);
+                this.view.renderGame(this.game);
             }
+            this.view.setPrompt(`${this.game.currentPlayer().name}: `, this.inputHandler);
         });
     }
 
@@ -38,9 +44,8 @@ export default class App implements IApp {
     }
 
     run() {
-        while (this.game.state !== GAME_STATE_CLOSED) {
-            this.view.renderGame(this.game);
-            // How do I handle input with readline in node.
-        }
+        this.view.clear();
+        this.view.renderGame(this.game);
+        this.view.setPrompt(`${this.game.currentPlayer().name}: `, this.inputHandler);
     }
 }

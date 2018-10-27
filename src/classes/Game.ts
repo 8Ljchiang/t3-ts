@@ -22,6 +22,7 @@ export default class Game implements IGame{
     reset(): void {
         this.state = GAME_STATE_NEW;
         this.activePlayerIndex = this._randomPlayerIndex();
+        this.board.reset();
     }    
     playPosition(position: number): void {
         if (this.state === GAME_STATE_STARTED) {

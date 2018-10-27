@@ -15,8 +15,21 @@ export default class App implements IApp {
     constructor(args: { game?: IGame, view?: IView, inputHandler?: any, parser?: any }) {
         this.game = args.game || this.newGame();
         this.view = args.view || new View({});
-        this.parser = null;
-        this.parser = null;
+        this.parser = args.parser || {};
+        this.inputHandler = args.inputHandler;
+    }
+
+    init() {
+        this.inputHandler.on('line', (line: any) => {
+            if (line && this.parser !== null) {
+                const args = {
+                    input: line,
+                    context: this.game,
+                    view: this.view
+                }
+                this.parser.parse(args);
+            }
+        });
     }
 
     newGame() {

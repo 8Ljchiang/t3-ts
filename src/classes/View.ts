@@ -21,20 +21,21 @@ export default class View implements IView {
     show(text: string): void {
         console.log(text);
     }
-    renderGame(game: IGame): void {
+    
+    showGame(game: IGame): void {
         switch(game.state) {
             case GAME_STATE_NEW:
-                this.show(this.gameRenderer.welcome(game));
+                this.renderGame(game);
                 break;
             case GAME_STATE_STARTED:
                 this.show("Game: Tic Tac Toe\n");
                 this.renderBoard(game.board);
-                this.show(this.gameRenderer.render(game));
+                this.renderGame(game);
                 break;
             case GAME_STATE_END:
                 this.show("End: Tic Tac Toe\n");
                 this.renderBoard(game.board);
-                this.show(this.gameRenderer.finale(game));
+                this.renderGame(game);
                 break;
             case GAME_STATE_CLOSED:
                 this.show("The game has exited.");
@@ -44,7 +45,13 @@ export default class View implements IView {
         }
     }
     renderBoard(board: IBoard): void {
-        this.show(this.boardRenderer.render(board));
+        const boardString = this.boardRenderer.render(board);
+        this.show(boardString);
+    }
+
+    renderGame(game: IGame): void {
+        const gameString = this.gameRenderer.render(game);
+        this.show(gameString);
     }
     clear(): void {
         readline.cursorTo(process.stdout, 0, 0);

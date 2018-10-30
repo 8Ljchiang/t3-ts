@@ -39,11 +39,11 @@ export default class ParsingTableDelegator implements IParsingTableDelegator {
     }
 }
 
-const parser = {
-    new: "newParser",
-    started: "gameParser",
-    end: "endParser"
-}
+// const parser = {
+//     new: "newParser",
+//     started: "gameParser",
+//     end: "endParser"
+// }
 
 // cons t parsingTableExample = {
 //     menu: {

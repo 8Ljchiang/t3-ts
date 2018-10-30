@@ -27,7 +27,7 @@ export default class Game implements IGame{
     playPosition(position: number): void {
         if (this.state === GAME_STATE_STARTED) {
             if (this.board.isPositionEmpty(position)) {
-                this.board.addMark(position, this.currentPlayer().mark);
+                this.board.addMark(position, this.currentPlayer().getMark());
                 this._cycleActivePlayer()
             }
             if (this.board.getEmptyPositions().length === 0) {

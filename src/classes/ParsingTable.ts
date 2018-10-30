@@ -3,12 +3,14 @@ import { IParsingTable } from "../interfaces/class/IParsingTable";
 
 export default class ParsingTable implements IParsingTable {
     // public options: string[];
+    public id: any;
     public handlers: ITable;
     // public subParsers: any;
 
-    constructor(args: { handlers: ITable }) {
+    constructor(args: { id?: string, handlers: ITable }) {
         // this.options = args.options;
         // this.subParsers = args.subParsers;
+        this.id = args.id;
         this.handlers = args.handlers;
     }
     

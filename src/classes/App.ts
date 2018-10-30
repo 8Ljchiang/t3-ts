@@ -21,7 +21,7 @@ export default class App implements IApp {
         this.init();
     }
 
-    init() {
+    private init() {
         this.inputHandler.on('line', (line: any) => {
             this.view.clear();
             if (line && this.parser !== null) {
@@ -32,14 +32,14 @@ export default class App implements IApp {
                     view: this.view
                 }
                 this.parser.parse(args);
-                this.view.renderGame(this.game);
+                this.view.showGame(this.game);
             }
             this.view.setPrompt(`${this.game.currentPlayer().name}: `, this.inputHandler);
         });
     }
 
-    newGame() {
-        const players = [new Player({ name: "player1", mark: "X" }), new Player({ name: "player2", mark: "O" })];
+    private newGame() {
+        const players = [new Player({ name: "Player1", mark: "X" }), new Player({ name: "Player2", mark: "O" })];
         return new Game({ players });
     }
 

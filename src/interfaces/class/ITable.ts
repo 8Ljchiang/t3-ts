@@ -3,4 +3,5 @@ export type ITable = {
     default: Function;
     error: Function;
     options: Function;
+    // validator: IValidator
 }

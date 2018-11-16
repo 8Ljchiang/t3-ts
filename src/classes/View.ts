@@ -1,13 +1,13 @@
-import readline from 'readline';
+import readline from "readline";
 
-import { IView } from "../interfaces/class/IView";
-import { IGameRenderer } from "../interfaces/class/IGameRenderer";
-import { IBoardRenderer } from "../interfaces/class/IBoardRenderer";
-import GameRenderer from "./GameRenderer";
-import BoardRenderer from "./BoardRenderer";
-import { IGame } from "../interfaces/class/IGame";
 import { IBoard } from "../interfaces/class/IBoard";
-import { GAME_STATE_STARTED, GAME_STATE_END, GAME_STATE_NEW, GAME_STATE_CLOSED } from "../lib/constants";
+import { IBoardRenderer } from "../interfaces/class/IBoardRenderer";
+import { IGame } from "../interfaces/class/IGame";
+import { IGameRenderer } from "../interfaces/class/IGameRenderer";
+import { IView } from "../interfaces/class/IView";
+import { GAME_STATE_CLOSED, GAME_STATE_END, GAME_STATE_NEW, GAME_STATE_STARTED } from "../lib/constants";
+import BoardRenderer from "./BoardRenderer";
+import GameRenderer from "./GameRenderer";
 
 export default class View implements IView {
     public gameRenderer: IGameRenderer;
@@ -18,12 +18,12 @@ export default class View implements IView {
         this.boardRenderer = args.boardRenderer || new BoardRenderer();
     }
 
-    show(text: string): void {
+    public show(text: string): void {
         console.log(text);
     }
-    
-    showGame(game: IGame): void {
-        switch(game.state) {
+
+    public showGame(game: IGame): void {
+        switch (game.state) {
             case GAME_STATE_NEW:
                 this.renderGame(game);
                 break;
@@ -44,20 +44,20 @@ export default class View implements IView {
                 this.show("Error: Unknown Game state");
         }
     }
-    renderBoard(board: IBoard): void {
+    public renderBoard(board: IBoard): void {
         const boardString = this.boardRenderer.render(board);
         this.show(boardString);
     }
 
-    renderGame(game: IGame): void {
+    public renderGame(game: IGame): void {
         const gameString = this.gameRenderer.render(game);
         this.show(gameString);
     }
-    clear(): void {
+    public clear(): void {
         readline.cursorTo(process.stdout, 0, 0);
         readline.clearScreenDown(process.stdout);
     }
-    setPrompt(text: string, inputHandler: any): void {
+    public setPrompt(text: string, inputHandler: any): void {
         inputHandler.setPrompt(text);
         inputHandler.prompt();
     }

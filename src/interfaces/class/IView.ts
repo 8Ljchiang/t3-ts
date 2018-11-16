@@ -1,7 +1,7 @@
-import { IGame } from './IGame';
-import { IBoard } from './IBoard';
-import { IGameRenderer } from "./IGameRenderer";
+import { IBoard } from "./IBoard";
 import { IBoardRenderer } from "./IBoardRenderer";
+import { IGame } from "./IGame";
+import { IGameRenderer } from "./IGameRenderer";
 
 export interface IView {
     gameRenderer: IGameRenderer;

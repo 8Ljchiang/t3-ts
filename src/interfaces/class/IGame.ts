@@ -1,9 +1,9 @@
-import IPlayer from "./IPlayer";
 import { IBoard } from "./IBoard";
+import IPlayer from "./IPlayer";
 
 export interface IGame {
     state: string;
-    players: Array<IPlayer>;
+    players: IPlayer[];
     activePlayerIndex: number;
     board: IBoard;
     reset(): void;

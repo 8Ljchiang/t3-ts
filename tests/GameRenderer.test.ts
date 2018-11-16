@@ -1,10 +1,13 @@
 import Game from '../src/classes/Game';
-import GameRenderer from '../src/classes/GameRenderer';
-import { GAME_WELCOME, GAME_STARTED, GAME_FINALE, GAME_STATE_STARTED, GAME_STATE_END } from '../src/lib/constants';
 import Player from '../src/classes/Player';
+import GameRenderer from '../src/classes/GameRenderer';
+import PatternChecker from '../src/classes/PatternChecker';
+import { winPatterns3 } from '../src/lib/patterns';
+import { GAME_WELCOME, GAME_STARTED, GAME_FINALE, GAME_STATE_STARTED, GAME_STATE_END } from '../src/lib/constants';
 
+const patternChecker = new PatternChecker({ patterns: winPatterns3 });
 const players = [new Player({ name: "Mark", mark: "X"}), new Player({ name: "Tom", mark: "O"})]
-const game = new Game({ players });
+const game = new Game({ players, patternChecker });
 const gameRenderer = new GameRenderer();
 
 describe("GameRenderer", () => {

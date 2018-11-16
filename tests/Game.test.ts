@@ -1,14 +1,18 @@
 import Game from '../src/classes/Game';
 import Player from '../src/classes/Player';
+import PatternChecker from '../src/classes/PatternChecker';
+
+import { winPatterns3 } from '../src/lib/patterns';
 import { GAME_STATE_NEW, GAME_STATE_STARTED, GAME_STARTED } from '../src/lib/constants';
 
-let game = new Game({});
+const players = [new Player({ name: "Mike", mark: "X"}), new Player({ name: "Will", mark: "O"})];
+const patternChecker = new PatternChecker({ patterns: winPatterns3 });
+let game = new Game({ players, patternChecker });
 
 describe("Game", () => {
 
     beforeEach(() => {
-        const players = [new Player({ name: "Mike", mark: "X"}), new Player({ name: "Will", mark: "O"})];
-        game = new Game({ players });
+        game = new Game({ players, patternChecker });
     })
 
     it("should create a game with a state of 'NEW'", () => {

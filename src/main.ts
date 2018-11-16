@@ -3,13 +3,16 @@ import Game from './classes/Game';
 import Player from './classes/Player';
 import ParsingTableDelegator from './classes/ParsingTableDelegator';
 import ParsingTable from './classes/ParsingTable';
+import PatternChecker from './classes/PatternChecker';
 import { newGameHandlers, startedGameHandlers, endGameHandlers } from './lib/parsingTables';
 import { IParsingTable } from './interfaces/class/IParsingTable';
 import App from './classes/App';
 import { GAME_STATE_NEW, GAME_STATE_END, GAME_STATE_STARTED } from './lib/constants';
+import { winPatterns3 } from './lib/patterns';
 
+const patternChecker = new PatternChecker({ patterns: winPatterns3 });
 const players = [new Player({ name: "Player1", mark: "X"}), new Player({ name: "Player2", mark: "O"})];
-const game = new Game({ players });
+const game = new Game({ players, patternChecker });
 const inputHandler = readline.createInterface(process.stdin, process.stdout);
 
 const newGameParseTable: IParsingTable = new ParsingTable({ handlers: newGameHandlers });

@@ -1,6 +1,6 @@
 import Game from '../src/classes/Game';
 import GameRenderer from '../src/classes/GameRenderer';
-import { GAME_WELCOME, GAME_STARTED, GAME_FINALE } from '../src/lib/constants';
+import { GAME_WELCOME, GAME_STARTED, GAME_FINALE, GAME_STATE_STARTED, GAME_STATE_END } from '../src/lib/constants';
 import Player from '../src/classes/Player';
 
 const players = [new Player({ name: "Mark", mark: "X"}), new Player({ name: "Tom", mark: "O"})]
@@ -13,10 +13,12 @@ describe("GameRenderer", () => {
     })
 
     it("should return the game started string", () => {
+        game.setState(GAME_STATE_STARTED);
         expect(gameRenderer.render(game)).toEqual("It's Mark's turn.");
     })
 
     it("should return the game finale string", () => {
+        game.setState(GAME_STATE_END);
         expect(gameRenderer.render(game)).toEqual(GAME_FINALE);
     })
 })

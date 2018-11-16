@@ -8,6 +8,19 @@ export default class PatternChecker implements IPatternChecker {
     }
 
     containsPattern(positions: Array<number>): boolean {
+        for (let pattern of this.patterns) {
+            const matchingPositions = pattern.split(",").map((stringPosition) => parseInt(stringPosition));
+            const matches = [];
+            for (let position of positions) {
+                if (matchingPositions.indexOf(position) != -1) {
+                    matches.push(position);
+                }
+            }
+
+            if (matches.length === matchingPositions.length) {
+                return true;
+            }
+        }
         return false;
     }
 }

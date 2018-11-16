@@ -1,18 +1,18 @@
-import { IPatternChecker } from '../interfaces/class/IPatternChecker';
+import { IPatternChecker } from "../interfaces/class/IPatternChecker";
 
 export default class PatternChecker implements IPatternChecker {
-    public patterns: Array<string>
+    public patterns: string[];
 
-    constructor(args: { patterns: Array<string> }) {
+    constructor(args: { patterns: string[] }) {
         this.patterns = args.patterns;
     }
 
-    containsPattern(positions: Array<number>): boolean {
-        for (let pattern of this.patterns) {
-            const matchingPositions = pattern.split(",").map((stringPosition) => parseInt(stringPosition));
+    public containsPattern(positions: number[]): boolean {
+        for (const pattern of this.patterns) {
+            const matchingPositions = pattern.split(",").map((stringPosition) => parseInt(stringPosition, 10));
             const matches = [];
-            for (let position of positions) {
-                if (matchingPositions.indexOf(position) != -1) {
+            for (const position of positions) {
+                if (matchingPositions.indexOf(position) !== -1) {
                     matches.push(position);
                 }
             }

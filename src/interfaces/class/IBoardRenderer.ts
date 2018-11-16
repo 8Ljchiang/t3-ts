@@ -1,7 +1,7 @@
-import { IRenderer } from './IRenderer';
-import { IBoard } from './IBoard';
+import { IBoard } from "./IBoard";
+import { IRenderer } from "./IRenderer";
 
-export interface IBoardRenderer extends IRenderer{
+export interface IBoardRenderer extends IRenderer {
     render(board: IBoard): string;
     _makeSpaceBuffer(count: number): string;
     _createNonlineRow(board: IBoard): string;
